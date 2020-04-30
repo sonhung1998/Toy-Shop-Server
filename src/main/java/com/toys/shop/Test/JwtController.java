@@ -33,14 +33,13 @@ public class JwtController {
 
 	@PostMapping("/login")
 	public LoginResponse authenticateUser(@Valid @RequestBody LoginRequest loginRequest) {
-		log.info("ACCOUNT:"+loginRequest.toString());
 		Authentication authentication = authenticationManager.authenticate(
 				new UsernamePasswordAuthenticationToken(loginRequest.getUsername(), loginRequest.getPassword()));
 		String jwt = null;
 		try {
 			SecurityContextHolder.getContext().setAuthentication(authentication);
 			jwt = jwtProvider.gerenateToken((CustomAccountDetails) authentication.getPrincipal());
-			log.info("JWT:" + jwt);
+	
 		} catch (Exception e) {
 			log.error("Lỗi xảy ra:" + e.getMessage());
 		}

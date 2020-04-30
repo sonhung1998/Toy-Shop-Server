@@ -12,7 +12,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.toys.shop.Entities.Role;
 
 import lombok.AllArgsConstructor;
@@ -51,6 +51,6 @@ public class Account {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "ROLE_ID")
 	@ToString.Exclude
-	@JsonIgnore
+	@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler" })
 	private Role role;
 }

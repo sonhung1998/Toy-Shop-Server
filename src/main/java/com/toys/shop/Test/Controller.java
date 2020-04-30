@@ -21,14 +21,15 @@ public class Controller {
 		return "hello";
 	}
 	
-	@GetMapping("/admin")
+	@GetMapping("/random")
 	public String admin() {
-		return "Admin Page";
+		return "Random";
 	}
 	
 	@GetMapping("/403")
 	public String accessDenied() {
 		return "You need admin role to access this page !";
 	}
+	
 
 }

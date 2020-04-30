@@ -39,7 +39,7 @@ public class Category {
 	@JsonIgnore
 	private List<Product> products;
 
-	@OneToMany(mappedBy = "parentCategory")
+	@OneToMany(mappedBy = "parentCategory",cascade=CascadeType.ALL,orphanRemoval=true)
 	@JsonIgnore
 	private List<Category> childCategory;
 

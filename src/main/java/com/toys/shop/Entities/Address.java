@@ -1,8 +1,7 @@
 package com.toys.shop.Entities;
 
-import java.util.Collection;
+import java.util.List;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -12,30 +11,32 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.toys.shop.Entities.Account.Account;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+@Entity
+@Table(name = "address")
 @Data
 @NoArgsConstructor
-@AllArgsConstructor
-@Entity
-@Table(name = "role")
-public class Role {
-
+public class Address {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Integer id;
 
-	@Column(name = "ROLE")
-	private int role;
-
-	@Column(name = "DESCRIPTION")
-	private String description;
+	@Column(name = "DISTRICT")
+	private String district;
 	
-	@OneToMany(mappedBy = "role", cascade = CascadeType.ALL)
+	@Column(name = "CITY")
+	private String city;
+	
+	@OneToMany(mappedBy="address")
 	@JsonIgnore
-	private Collection<Account> accounts;
+	private List<Customer>customers;
+	
+	public Address(String district, String city) {
+		super();
+		this.district = district;
+		this.city = city;
+	}
 }
